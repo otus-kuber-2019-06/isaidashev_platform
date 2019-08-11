@@ -6,11 +6,17 @@ metadata:
     name: nginx-otus-kp
 spec:
   containers:
-    - name: nginx-otus-kp
-      image: isaidashev/nginx-otus-kp:latest
-      volumeMounts:
-        - name:  app
-          mountPath:  /app
+  - name: web
+    image: petryalta/kuber-2019-06:job1
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8000
+    volumeMounts:
+    - name: app
+      mountPath: /app
   initContainers:
     - name: busybox-wget
       image: busybox:latest
