@@ -6,8 +6,8 @@ metadata:
     name: nginx-otus-kp
 spec:
   containers:
-  - name: web
-    image: petryalta/kuber-2019-06:job1
+  - name: nginx-otus-kp
+    image: isaidashev/nginx-otus-kp:latest
     resources:
       limits:
         memory: "128Mi"
