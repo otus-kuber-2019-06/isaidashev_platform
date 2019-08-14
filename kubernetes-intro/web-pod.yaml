@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-otus-kp
+  name: web
   labels:
-    name: nginx-otus-kp
+    name: web
 spec:
   containers:
-  - name: nginx-otus-kp
+  - name: web
     image: isaidashev/webotus:v1
     resources:
       limits:
