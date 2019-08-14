@@ -7,11 +7,11 @@ metadata:
 spec:
   containers:
   - name: nginx-otus-kp
-    image: isaidashev/nginx-otus-kp:latest
+    image: isaidashev/webotus:v1
     resources:
       limits:
-        memory: "64Mi"
-        cpu: "250m"
+        memory: "128Mi"
+        cpu: "500m"
     ports:
       - containerPort: 8000
     volumeMounts:
