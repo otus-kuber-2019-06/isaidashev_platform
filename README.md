@@ -39,8 +39,90 @@ volumes:
 kubectl port-forward --adress 0.0.0.0 pod/web 8000:8000
 ```
 
-##  ДЗ 1
+##  ДЗ 2
 
-1. Посмотреть группы api к котором можно предоставить доступ:
+Для доступа к kubernetis используется подход с тремя AAA
+- Autentification
+- Autorization
+- Admision
+
+### Autentification
+
+https://kubernetes.io/docs/reference/access-authn-authz/controlling-access/
+
+Нужно kubernetes обьяснять от куда аутентифицировать. 
+Распространненые спрособы:
+- по сертификату
+- по парольному файлу
+- OpenID Connect Tokens
+
+Способы аутентификации задаются при помощи командной строки api-server. Посмотреть что сейчас включено можно через `kubect cluster-info dump`
+
+Для подключению к кластеру kubectl использует конфигурации назваемыми контекстами:
+`kubectl config view`
+В переменой среды KUBECONFIG указан путь до конфига. В нее можно прописать несколько путей до конфигурационых файлов. 
+
+```
+apiVersion: v1
+contexts:
+- context: 
+    cluster: minikube
+    user: static-admin
+  name: minikube-static
+  kind: Config
+users: 
+- name: static-admin
+  user:
+    username: admin
+    password: password
+```
+
+### Autentification
+1. Посмотреть группы api (ресурсы) к котором можно предоставить доступ:
 `kubectl api-resources`
-2. 
+2. Группы api указываются в ролях. Роли бывают кластерные (глобальные в рамках кластера) и роли с рапостранением на namespace. Roles соединяют ресурсы и глаголы. Для просмотра предустановленых ролей:
+```
+kubectl get clusterrole
+kubectl get role
+```
+Пример конфига:
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # "namespace" omitted since ClusterRoles are not namespaced
+  name: secret-reader
+rules:
+- apiGroups: [""] 
+  resources: ["secrets"]
+  verbs: ["get", "watch", "list"] #Verbs (глаголы) — совокупность операций, которые могут быть выполнены над ресурсами. 
+```
+Ссылка на документацию: https://kubernetes.io/docs/reference/access-authn-authz/authorization/
+3. RoleBindings или ClusterRoleBindings - соеденияет роли с субьектами. 
+
+- Users — глобальные пользователи, предназначены для людей или процессов, живущих вне кластера;
+- ServiceAccounts — ограниченные пространством имён и предназначенные для процессов внутри кластера, запущенных на подах.
+
+```
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: salme-pods
+  namespace: test
+subjects:
+- kind: User
+  name: jsalmeron
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-read-create
+  apiGroup: rbac.authorization.k8s.io
+```
+4. Проверка возможности доступа к API:
+
+```
+kubectl auth can-i create deployments --namespace dev
+```
+
+Ссылки:
+https://habr.com/ru/company/flant/blog/422801/
