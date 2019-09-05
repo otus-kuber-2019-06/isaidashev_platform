@@ -6,6 +6,7 @@ metadata:
 subjects: 
 - kind: ServiceAccount
   name: ken
+  namespace: dev
 roleRef:
   kind: ClusterRole
   name: view
