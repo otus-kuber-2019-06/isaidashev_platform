@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: bob-admin
+  name: ken-dev-view
   namespace: dev
 subjects: 
 - kind: ServiceAccount
@@ -10,4 +10,4 @@ subjects:
 roleRef:
   kind: ClusterRole
   name: view
-  apiGroup: rbac.authorization.k8s.io
+  apiGroup: rbac.authorization.k8s.iocurl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
