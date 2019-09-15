@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name:  web-svc-cip
+  name: web-svc-cip
 spec:
   selector:
-    app:  web
-  type:  ClusterIP
+    app: web
+  type: ClusterIP
   ports:
-  - name:  web
+  - name: web
     protocol: TCP
-    port:  80
-    targetPort:  8000
+    port: 80
+    targetPort: 8000
