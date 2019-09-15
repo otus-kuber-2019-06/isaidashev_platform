@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  web-svc
+spec:
+  selector:
+    app:  web
+  type:  ClusterIP
+  clusterIP: None
+  ports:
+  - name:  web
+    protocol: TCP
+    port:  80
+    targetPort:  8000

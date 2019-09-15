@@ -126,3 +126,16 @@ kubectl auth can-i create deployments --namespace dev
 
 Ссылки:
 https://habr.com/ru/company/flant/blog/422801/
+
+##  ДЗ 3
+
+Переключена работа kube-proxy с iptables на IPVS. В конфиг configmap/kube-proxy установлен  `mode: "ipvs"`.
+
+Настроена балансировка для сервисов при помощи metallb `kubectl apply -fhttps://raw.githubusercontent.com/google/metallb/v0.8.0/manifests/metallb.yaml` и выделен пул сетевых адресов.
+
+Предоставлен доступ к тестовому приложению в при помощи обычного сервис и автоматического выделеного IP а так же к внешним запросам на CoreDNS.
+
+Настроен Ingress `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml` для установленого дашборда kubernetis через headless сервис с автоматическим выделением IP.
+
+
+
