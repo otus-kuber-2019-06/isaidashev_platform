@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  kubernetes-dashboard-svc
+  namespace: kubernetes-dashboard
+spec:
+  selector:
+    k8s-app: kubernetes-dashboard
+  type:  ClusterIP
+  clusterIP: None
+  ports:
+    - name:  kubernetes-dashboard
+      protocol: TCP
+      port:  8080
+      targetPort:  8443

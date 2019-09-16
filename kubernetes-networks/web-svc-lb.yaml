@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  web-svc-lb
+spec:
+  selector:
+    app:  web
+  type:  LoadBalancer
+  ports:
+  - name:  web
+    protocol: TCP
+    port:  80
+    targetPort:  8000
