@@ -137,5 +137,9 @@ https://habr.com/ru/company/flant/blog/422801/
 
 Настроен Ingress `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml` для установленого дашборда kubernetis через headless сервис с автоматическим выделением IP.
 
+##  ДЗ 3
 
+Развернут minio https://raw.githubusercontent.com/express42/otus-platform-snippets/master/Module-02/Kuberenetes-volumes/minio-statefulset.yaml
+
+В конфигурацию добавлен headles и secret.
 
