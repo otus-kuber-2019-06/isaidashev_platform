@@ -1,6 +1,7 @@
 # Google provider settings
 provider "google" {
   version = "~> 2.5"
+  credentials = "${file("~/upheld-garage-255412-f5492c9b0f7c.json")}"
   project = "${var.project}"
   region  = "${var.region}"
 }
