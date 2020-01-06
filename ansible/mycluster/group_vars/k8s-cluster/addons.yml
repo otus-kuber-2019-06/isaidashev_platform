@@ -4,7 +4,7 @@
 dashboard_enabled: true
 
 # Helm deployment
-helm_enabled: false
+helm_enabled: true
 
 # Registry deployment
 registry_enabled: false
@@ -29,7 +29,7 @@ local_path_provisioner_enabled: false
 # local_path_provisioner_image_tag: "v0.0.2"
 
 # Local volume provisioner deployment
-local_volume_provisioner_enabled: false
+local_volume_provisioner_enabled: true
 # local_volume_provisioner_namespace: kube-system
 # local_volume_provisioner_storage_classes:
 #   local-storage:
@@ -78,7 +78,7 @@ rbd_provisioner_enabled: false
 # rbd_provisioner_reclaim_policy: Delete
 
 # Nginx ingress controller deployment
-ingress_nginx_enabled: false
+ingress_nginx_enabled: true
 # ingress_nginx_host_network: false
 ingress_publish_status_address: ""
 # ingress_nginx_nodeselector:

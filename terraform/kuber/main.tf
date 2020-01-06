@@ -1,9 +1,9 @@
 # Google provider settings
 provider "google" {
-  version = "~> 2.5"
+  version     = "~> 2.5"
   credentials = "${file("~/upheld-garage-255412-f5492c9b0f7c.json")}"
-  project = "${var.project}"
-  region  = "${var.region}"
+  project     = "${var.project}"
+  region      = "${var.region}"
 }
 
 module "app" {
@@ -13,4 +13,9 @@ module "app" {
   public_key_path = "${var.public_key_path}"
   zone            = "${var.zone}"
   disk_image      = "${var.disk_image}"
+}
+module "vpc" {
+  source    = "../modules/vpc"
+  name_rule = "apikuber"
+  ports     = "6443"
 }
